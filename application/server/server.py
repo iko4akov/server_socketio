@@ -12,9 +12,7 @@ handler = HandlerMessages()
 
 socket_data = {'online': 0}
 
-make_turn_check = False
 
-word_w = False
 @sio.event
 def connect(sid, environ):
     socket_data['online'] += 1
@@ -55,6 +53,7 @@ def make_turn(sid: str, data: dict):
 
 
 def run_server() -> None:
+    """Run the server using eventlet.wsgi"""
     eventlet.wsgi.server(
         eventlet.listen(('', 5000)), app
     )
